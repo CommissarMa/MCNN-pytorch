@@ -23,4 +23,4 @@ Dropbox: [link](https://www.dropbox.com/s/fipgjqxl7uj8hd5/ShanghaiTech.zip?dl=0)
 &emsp;2. Run test.py for calculate MAE of test images or just show an estimated density-map.  
 # Other notes
 &emsp;1. Unlike original paper, this implemention doesn't crop patches for training. We directly use original images to train mcnn model and also achieve the result as authors showed in the paper.
-&emsp;2. If you are new to crowd counting, we recommand you to know [https://github.com/CommissarMa/Crowd_counting_from_scratch]{https://github.com/CommissarMa/Crowd_counting_from_scratch} first. It is an overview and tutorial of crowd counting.
+&emsp;2. If you are new to crowd counting, we recommand you to know [Crowd_counting_from_scratch](https://github.com/CommissarMa/Crowd_counting_from_scratch) first. It is an overview and tutorial of crowd counting.
