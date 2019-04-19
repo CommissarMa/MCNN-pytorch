@@ -21,15 +21,16 @@ def cal_mae(img_root,gt_dmap_root,model_param_path):
     dataloader=torch.utils.data.DataLoader(dataset,batch_size=1,shuffle=False)
     mcnn.eval()
     mae=0
-    for i,(img,gt_dmap) in enumerate(dataloader):
-        img=img.to(device)
-        gt_dmap=gt_dmap.to(device)
-        # forward propagation
-        et_dmap=mcnn(img)
-        mae+=abs(et_dmap.data.sum()-gt_dmap.data.sum()).item()
-        del img,gt_dmap,et_dmap
+    with torch.no_grad():
+        for i,(img,gt_dmap) in enumerate(dataloader):
+            img=img.to(device)
+            gt_dmap=gt_dmap.to(device)
+            # forward propagation
+            et_dmap=mcnn(img)
+            mae+=abs(et_dmap.data.sum()-gt_dmap.data.sum()).item()
+            del img,gt_dmap,et_dmap
 
-    print("model_param_path:"+model_param_path+" mae:"+str(mae/len(dataloader)))
+    print("model_param_path:"+model_param_path+" MAE:"+str(mae/len(dataloader)))
 
 def estimate_density_map(img_root,gt_dmap_root,model_param_path,index):
     '''
