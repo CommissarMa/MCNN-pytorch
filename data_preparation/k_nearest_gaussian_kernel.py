@@ -15,18 +15,18 @@ def gaussian_filter_density(img,points):
     '''
     This code use k-nearst, will take one minute or more to generate a density-map with one thousand people.
 
-    gt: a two-dimension list of pedestrians' annotation with the order [[col,row],[col,row],...].
+    points: a two-dimension list of pedestrians' annotation with the order [[col,row],[col,row],...].
     img_shape: the shape of the image, same as the shape of required density-map. (row,col). Note that can not have channel.
 
     return:
     density: the density-map we want. Same shape as input image but only has one channel.
 
     example:
-    gt: three pedestrians with annotation:[[163,53],[175,64],[189,74]].
+    points: three pedestrians with annotation:[[163,53],[175,64],[189,74]].
     img_shape: (768,1024) 768 is row and 1024 is column.
     '''
     img_shape=[img.shape[0],img.shape[1]]
-    print("Shape of current image: ",img_shape,". Totally need generate ",len(gt),"gaussian kernels.")
+    print("Shape of current image: ",img_shape,". Totally need generate ",len(points),"gaussian kernels.")
     density = np.zeros(img_shape, dtype=np.float32)
     gt_count = len(points)
     if gt_count == 0:
@@ -34,9 +34,9 @@ def gaussian_filter_density(img,points):
 
     leafsize = 2048
     # build kdtree
-    tree = scipy.spatial.KDTree(gt.copy(), leafsize=leafsize)
+    tree = scipy.spatial.KDTree(points.copy(), leafsize=leafsize)
     # query kdtree
-    distances, locations = tree.query(gt, k=4)
+    distances, locations = tree.query(points, k=4)
 
     print ('generate density...')
     for i, pt in enumerate(points):
@@ -57,9 +57,9 @@ def gaussian_filter_density(img,points):
 # test code
 if __name__=="__main__":
     # show an example to use function generate_density_map_with_fixed_kernel.
-    root = 'D:\workspace\ShanghaiTech_dataset'
+    root = 'D:\\workspaceMaZhenwei\\GithubProject\\Crowd_counting_from_scratch\\data'
     
-    #now generate the ShanghaiA's ground truth
+    # now generate the ShanghaiA's ground truth
     part_A_train = os.path.join(root,'part_A_final/train_data','images')
     part_A_test = os.path.join(root,'part_A_final/test_data','images')
     # part_B_train = os.path.join(root,'part_B_final/train_data','images')
@@ -79,7 +79,7 @@ if __name__=="__main__":
         points = mat["image_info"][0,0][0,0][0] #1546person*2(col,row)
         k = gaussian_filter_density(img,points)
         # plt.imshow(k,cmap=CM.jet)
-        # break
+        # save density_map to disk
         np.save(img_path.replace('.jpg','.npy').replace('images','ground_truth'), k)
     
     '''
