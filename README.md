@@ -1,7 +1,7 @@
 # MCNN-pytorch
 This is an simple and clean implemention of CVPR 2016 paper ["Single-Image Crowd Counting via Multi-Column Convolutional Neural Network."](http://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Zhang_Single-Image_Crowd_Counting_CVPR_2016_paper.pdf)  
 # Installation
-&emsp;1. Install pytorch  
+&emsp;1. Install pytorch 1.0.0 later and python 3.6 later  
 &emsp;2. Install visdom  
 ```pip
 pip install visdom
