@@ -17,13 +17,13 @@ if __name__=="__main__":
     optimizer = torch.optim.SGD(mcnn.parameters(), lr=1e-6,
                                 momentum=0.95)
     
-    img_root='D:\\workspaceMaZhenwei\\MCNN-pytorch\\data\\Shanghai_part_A\\train_data\\images'
-    gt_dmap_root='D:\\workspaceMaZhenwei\\MCNN-pytorch\\data\\Shanghai_part_A\\train_data\\ground_truth'
+    img_root='D:\\workspaceMaZhenwei\\GithubProject\\MCNN-pytorch\\data\\Shanghai_part_A\\train_data\\images'
+    gt_dmap_root='D:\\workspaceMaZhenwei\\GithubProject\\MCNN-pytorch\\data\\Shanghai_part_A\\train_data\\ground_truth'
     dataset=CrowdDataset(img_root,gt_dmap_root,4)
     dataloader=torch.utils.data.DataLoader(dataset,batch_size=1,shuffle=True)
 
-    test_img_root='D:\\workspaceMaZhenwei\\MCNN-pytorch\\data\\Shanghai_part_A\\test_data\\images'
-    test_gt_dmap_root='D:\\workspaceMaZhenwei\\MCNN-pytorch\\data\\Shanghai_part_A\\test_data\\ground_truth'
+    test_img_root='D:\\workspaceMaZhenwei\\GithubProject\\MCNN-pytorch\\data\\Shanghai_part_A\\test_data\\images'
+    test_gt_dmap_root='D:\\workspaceMaZhenwei\\GithubProject\\MCNN-pytorch\\data\\Shanghai_part_A\\test_data\\ground_truth'
     test_dataset=CrowdDataset(test_img_root,test_gt_dmap_root,4)
     test_dataloader=torch.utils.data.DataLoader(test_dataset,batch_size=1,shuffle=False)
 
